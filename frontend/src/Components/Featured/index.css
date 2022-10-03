@@ -1,0 +1,24 @@
+.faturedImg{
+    width: 750px;
+    object-fit: cover;
+}
+.featured{
+    width: 100%;
+    max-width: 1024px;
+    gap: 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    z-index: 1;
+}
+.featuredItem{
+    flex:1;
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 420px;
+}
+.featuredTitles{
+    position: absolute;
+    bottom: 20px;
+}
