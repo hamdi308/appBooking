@@ -14,7 +14,7 @@ const ListHotel = () => {
             <h1 className='lsTitle'>Search</h1>
             <div className='lsItem'>
               <label>Destination</label>
-              <input type="text" name="" value=""/>
+              <input type="text" name="" />
             </div>
             <div className='lsItem'>
               <label>Check-in Date</label>

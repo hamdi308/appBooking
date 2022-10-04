@@ -74,7 +74,7 @@ export const Header = ({type}) => {
                   <div className='headerSearchItem'>
                       <FontAwesomeIcon className="headerIcon" icon={faCalendarDays} />
                       <span onClick={()=>SetOpenDate(!openDate)} className='headerSearchText'>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}</span>
-                       { openDate && <DateRange className='date' editableDateInputs={true} onChange={item => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date}/>}</div>
+                       { openDate && <DateRange className='date' editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} minDate={new Date()}/>}</div>
                   <div className='headerSearchItem'>
                       <FontAwesomeIcon className="headerIcon" icon={faPersonCircleQuestion} />
                       <span onClick={()=>setOpenOptions(!openOptions)} className='headerSearchText'>{`${options.adult} adult . ${options.children} children . ${options.room} room`}</span>
