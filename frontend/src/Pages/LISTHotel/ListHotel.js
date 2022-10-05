@@ -7,6 +7,8 @@ import { format } from 'date-fns';
 import { useLocation } from 'react-router-dom';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../Components/SearchItem/SearchItem';
+import Footer from '../../Components/Footer/Footer';
+import MailList from '../../Components/MailList/MailList';
 const ListHotel = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
@@ -79,7 +81,8 @@ const ListHotel = () => {
           </div>
         </div>  
       </div>
-      
+      <MailList/>
+      <Footer/>
     </div>
   )
 }
