@@ -69,11 +69,11 @@ export const Header = ({type}) => {
               <div className='headerSearch'>
                   <div className='headerSearchItem'>
                       <FontAwesomeIcon className="headerIcon" icon={faBed} />
-                      <input type="text" placeholder='Put Your Destination' className='headerSearchInput' onChange={(e)=>setDestination(e.target.value)}/>
+                      <input type="text" placeholder='Put Your Destination' className='headerSearchInput' name='destination' onChange={(e)=>setDestination(e.target.value)}/>
                   </div>
                   <div className='headerSearchItem'>
                       <FontAwesomeIcon className="headerIcon" icon={faCalendarDays} />
-                      <span onClick={()=>SetOpenDate(!openDate)} className='headerSearchText'>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}</span>
+                      <span onClick={()=>SetOpenDate(!openDate)} name='date' className='headerSearchText'>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}</span>
                        { openDate && <DateRange className='date' editableDateInputs={true} onChange={(item) => setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} minDate={new Date()}/>}</div>
                   <div className='headerSearchItem'>
                       <FontAwesomeIcon className="headerIcon" icon={faPersonCircleQuestion} />
@@ -99,7 +99,7 @@ export const Header = ({type}) => {
                               <span className='optionText'>Room</span>
                               <div className='optionCounter'>
                               <button className='optionCounterButton' onClick={()=>handleOption('room','d')} disabled={options.room<=0}>-</button>
-                                  <span className='optionCounterButtonValue'>{ options.room }</span>
+                                  <span className='optionCounterButtonValue' name='options'>{ options.room }</span>
                               <button className='optionCounterButton' onClick={()=>handleOption('room','i')} >+</button>
                               </div>
                          </div>

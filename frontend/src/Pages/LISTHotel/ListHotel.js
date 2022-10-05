@@ -5,7 +5,8 @@ import './index.css';
 import { useLocation } from 'react-router-dom';
 const ListHotel = () => {
   const location = useLocation();
-  console.log(location)
+  console.log(location);
+  console.log('hamdi');
   return (
     <div><Navbar /><Header type="list" />
       <div className='listContainer'>
