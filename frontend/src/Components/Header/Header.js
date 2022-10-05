@@ -34,7 +34,7 @@ export const Header = ({type}) => {
     };
     const navigate = useNavigate();
     const handleSearch = () => {
-        navigate('/hotels',{state:{destination,date,options}});
+    navigate('/hotels',{state:{destination,date,options}});
 }
   return (
       <div className='header'>
@@ -99,7 +99,7 @@ export const Header = ({type}) => {
                               <span className='optionText'>Room</span>
                               <div className='optionCounter'>
                               <button className='optionCounterButton' onClick={()=>handleOption('room','d')} disabled={options.room<=0}>-</button>
-                                  <span className='optionCounterButtonValue' name='options'>{ options.room }</span>
+                                  <span className='optionCounterButtonValue' name=''>{ options.room }</span>
                               <button className='optionCounterButton' onClick={()=>handleOption('room','i')} >+</button>
                               </div>
                          </div>

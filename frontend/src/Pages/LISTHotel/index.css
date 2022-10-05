@@ -36,6 +36,7 @@
 
 .lsItem>label {
     font-size: 12px;
+    font-weight:bolder;
 }
 
 .lsItem>input {
@@ -63,6 +64,7 @@
     margin-bottom: 10px;
     color: #555;
     font-size: 12px;
+    font-weight:bold;
 }
 
 .lsOptionInput {
