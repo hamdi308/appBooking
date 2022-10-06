@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-top: 20px;
 }
 
@@ -21,7 +20,7 @@
     right: 0;
     border: none;
     padding: 10px 20px;
-    background-color: #0071c2;
+    background-color: #1B1B28;
     color: white;
     font-weight: bold;
     border-radius: 5px;
@@ -58,7 +57,10 @@
 .hotelImgWrapper {
     width: 33%;
 }
-
+.hotelSingleImg{
+    width: 420px;
+    height: 350px;
+}
 .hotelImg {
     width: 100%;
     object-fit: cover;
@@ -134,8 +136,8 @@
 }
 
 .sliderImg {
-    width: 80%;
-    height: 80vh;
+    width: 200%;
+    height: 60vh;
 }
 
 .close {
