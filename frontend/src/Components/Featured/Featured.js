@@ -18,8 +18,10 @@ import Sfax from '../../tunisieImages/sfax.jfif';
 import SidiBousaid from '../../tunisieImages/sidibousaid.webp';
 import Sousse from '../../tunisieImages/sousse.jfif';
 import Tataouine from '../../tunisieImages/tataouine.webp';
-import Tozeur from '../../tunisieImages/tozeur.webp';
+import useFetch from '../../hooks/useFetch';
+
 const Featured = () => {
+  const { data, loading, error, reFetch }=useFetch('hotel/countByCity?cities=mahdia,sfax')
   return (
       <div className='featured'>
           <div className='featuredItem'>
