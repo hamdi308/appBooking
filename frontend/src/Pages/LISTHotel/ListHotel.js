@@ -19,10 +19,9 @@ const ListHotel = () => {
   const [min, SetMin] = useState('undefined');
   const [max, SetMax] = useState('undefined');
   const { data, loading, error, reFetch } = useFetch(`hotel?cities=${destination}&min=${min || 0}&max=${max || 999}`);
-    const handleClick = () => {
+  const handleClick = () => {
       reFetch();
   }
-  
   return (
     <div><Navbar />
       <Header type="list" />
@@ -40,7 +39,7 @@ const ListHotel = () => {
                 date[0].startDate,
                 "MM/dd/yyyy"
               )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-              {openDate && (<DateRange  onChange={(item) => setDate([item.selection])} ranges={date} minDate={new Date()}/>)}
+              {openDate && (<DateRange onChange={(item) => setDate([item.selection])} ranges={date} minDate={new Date()}/>)}
             </div>
             <div className='lsItem'>
               <label>Options</label>
@@ -70,7 +69,7 @@ const ListHotel = () => {
             <button onClick={handleClick}>Search</button>
           </div>
           <div className='listResult'>
-            {loading ? ("loading") : <>{data.map((item) => (<SearchItem item={item} key={ item._id } />))} </>}
+            {loading ? ("loading") : <>{data.map((item) => ( <SearchItem item={item} key={ item._id } />))} </>}
           </div>
         </div>  
       </div>
