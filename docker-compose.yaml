@@ -4,15 +4,18 @@ services:
     build: ./api
     container_name: api_container
     ports: 
-      - '4000:4000'
+      - '8800:8800'
     volumes:
       - ./api:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb  
   mongodb:
-    image: mongo:5.0
+    image: mongo
+    volumes:
+      - data:/data/db
     ports:
       - 27017:27017
-    volumes:
-      - ~/apps/mongo:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=hamdi
       - MONGO_INITDB_ROOT_PASSWORD=hamdi    
@@ -20,5 +23,11 @@ services:
     build: ./frontend
     ports:
       - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
     stdin_open: true
     tty: true
+    depends_on:
+      - api
+volumes:   
+   data:

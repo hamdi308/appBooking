@@ -1,11 +1,12 @@
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import { Header } from '../../Components/Header/Header';
 import MailList from '../../Components/MailList/MailList';
 import Navbar from '../../Components/Navbar/Navbar';
+import { SearchContext } from '../../context/SearchContext';
 import useFetch from '../../hooks/useFetch';
 import './index.css';
 
@@ -30,6 +31,15 @@ const Hotel = () => {
       }
       SetSlideNumber(newSlideNumber);
   };
+  const { dates,options } = useContext(SearchContext);
+  console.log(dates);
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+  const timeDiff = ( date1,date2 )=>{
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+  const days = timeDiff(dates[0].endDate, dates[0].startDate);
   return (
     <div>
       <Navbar />
@@ -65,7 +75,7 @@ const Hotel = () => {
               <div className='hotelDetailsPrice'>
                 <h1>Perfect for a 9-night stay!</h1>
                 <span>Located in the real heart of Mahdia, this property has an excellent location score of 9.8!</span>
-                <h2><b>$1000</b>(9 nights)</h2>
+                <h2><b>${ days*data.cheapestPrice*options.room } </b>({days} nights)</h2>
                 <button type="">Reserver or Book Now !</button>
               </div>
             </div>
