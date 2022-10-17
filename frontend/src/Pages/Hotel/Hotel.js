@@ -1,21 +1,26 @@
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import { Header } from '../../Components/Header/Header';
 import MailList from '../../Components/MailList/MailList';
 import Navbar from '../../Components/Navbar/Navbar';
+import Reserve from '../../Components/Reserve/Reserve';
+import { AuthContext } from '../../context/AuthContext';
 import { SearchContext } from '../../context/SearchContext';
 import useFetch from '../../hooks/useFetch';
 import './index.css';
 
 const Hotel = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const location = useLocation();
   console.log(location)
   const id = location.pathname.split("/")[2];
   const [slideNumber, SetSlideNumber] = useState(0);
   const [openSlide, SetOpenSlide] = useState(false);
+  const [openModal, SetOpenModal] = useState(false);
   const handleOpen = (i) => {
     SetSlideNumber(i);
     SetOpenSlide(true);
@@ -40,6 +45,13 @@ const Hotel = () => {
     return diffDays;
   }
   const days = timeDiff(dates[0].endDate, dates[0].startDate);
+  const handleClick = () => {
+    if (user) {
+      SetOpenModal(true);
+    } else {
+      navigate('/login')
+    }
+  }
   return (
     <div>
       <Navbar />
@@ -76,7 +88,7 @@ const Hotel = () => {
                 <h1>Perfect for a 9-night stay!</h1>
                 <span>Located in the real heart of Mahdia, this property has an excellent location score of 9.8!</span>
                 <h2><b>${ days*data.cheapestPrice*options.room } </b>({days} nights)</h2>
-                <button type="">Reserver or Book Now !</button>
+                <button onClick={handleClick}>Book Now !</button>
               </div>
             </div>
           </div>
@@ -84,6 +96,7 @@ const Hotel = () => {
       </div>)</>}
       <MailList />
       <Footer />
+      {openModal && <Reserve setOpen={ SetOpenModal } hotelId={id} />}
     </div>
   )
 }

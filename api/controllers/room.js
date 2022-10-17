@@ -25,14 +25,6 @@ export const updateRoom = async (req, res, next) => {
     next(err);
   }
 };
-export const getRoom = async (req, res, next) => {
-    try {
-        const searchedRoom= await Room.findById(req.params.id);
-        res.status(200).json(searchedRoom);
-    } catch (err) {
-        next(err);
-    }
-};
 export const deleteRoom = async (req, res, next) => {
     const hotelId = req.params.hotelid;
     try {
