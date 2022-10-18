@@ -1,7 +1,9 @@
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { SearchContext } from '../../context/SearchContext';
+import { useNavigate } from "react-router-dom";
 import useFetch from '../../hooks/useFetch';
 import './index.css';
 
@@ -9,7 +11,8 @@ const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error, reFetch } = useFetch(`/hotel/room/${hotelId}`);
   console.log(data);
-   const { dates } = useContext(SearchContext);
+  const { dates } = useContext(SearchContext);
+  const navigate = useNavigate();
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -37,9 +40,19 @@ const Reserve = ({ setOpen, hotelId }) => {
     setSelectedRooms(selected ? [...selectedRooms, RoomNumber] : selectedRooms.filter((item) => item !== RoomNumber));
     console.log(selectedRooms);
   }
-  const handleClick = () => {
-    getDatesInRange();
-  }
+  const handleClick = async () => {
+    try {
+      await Promise.all(selectedRooms.map((roomId) => {
+        const res = axios.put(`rooms/update/availability/${roomId}`, { dates: ReservedDays });
+        return res.data;
+        
+      }));
+      setOpen(false);
+      navigate("/");
+    } catch (err) {
+      
+    }
+  };
   return (
     <div className='reserve'>
       <div className='rContainer'>
@@ -56,7 +69,7 @@ const Reserve = ({ setOpen, hotelId }) => {
             {room.roomNumbers.map(roomNumber => (
               <div className='room'>
               <label>{roomNumber.number}</label>
-                <input type='checkbox' value={ roomNumber._id } onChange={handleSelect} disabled={isNotAvailable(roomNumber)} />
+                <input type='checkbox' value={ roomNumber._id } onChange={handleSelect} disabled={!isNotAvailable(roomNumber)} />
            </div> )) }
           </div></>
         ))}

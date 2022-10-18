@@ -1,10 +1,10 @@
 .reserve {
-    width: fit-content;
+    width: auto;
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.418);
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
@@ -14,14 +14,20 @@
 .rContainer {
     background-color: white;
     padding: 20px;
-    position: relative;
-    overflow-y: auto;}
-
-.rClose {
+    width: 600px;
+    display: block;
+    position:absolute;
+    overflow: auto;
+    height: 100%;
+    overflow: scroll;
+}
+    
+    .rClose {
     position: absolute;
     top: 0;
     right: 0;
     cursor: pointer;
+
 }
 
 .rItem {
@@ -29,12 +35,14 @@
     align-items: center;
     gap: 50px;
     padding: 20px;
+
 }
 
 .rInfo {
     display: flex;
     flex-direction: column;
     gap: 5px;
+
 }
 
 .rTitle {
